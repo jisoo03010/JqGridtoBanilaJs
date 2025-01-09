@@ -7,106 +7,113 @@
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" media="screen" href="http://trirand.com/blog/jqgrid/themes/redmond/jquery-ui-custom.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="http://trirand.com/blog/jqgrid/themes/ui.jqgrid.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="http://trirand.com/blog/jqgrid/themes/ui.multiselect.css" />
-    <link rel="stylesheet" href="./gridview.css">
-    <link rel="stylesheet" href="./dpSyntaxHighlighter.css">
+    <link rel="stylesheet" href="gridview.css">
+    <link rel="stylesheet" href="dpSyntaxHighlighter.css">
 </head>
 <script>
 
   
 
-    var dkbmcData = `
-            <response>
-                <parameters>
-                    <orderBy>name</orderBy>
-                    <order>asc</order>
-                    <currentPage>1</currentPage>
-                    <totalPages>5</totalPages>
-                    <totalItems>50</totalItems>
-                    <currentFilter name="name" operator="equals" value="John Doe" isQuoted="1"/>
-                </parameters>
-                <gridViewData>
-                    <header>
-                        <element 
-                            title="ID" 
-                            name="id" 
-                            resizable="1" 
-                            sortable="1" 
-                            isId="1" 
-                            contentAlign="center" 
-                            editTemplateId="editTemplateId1" 
-                            itemTemplateId="itemTemplateId1" 
-                        />
-                        <element 
-                            title="Name" 
-                            name="name" 
-                            resizable="1" 
-                            sortable="1" 
-                            isId="0" 
-                            contentAlign="center" 
-                            editTemplateId="editTemplateId2" 
-                            itemTemplateId="itemTemplateId2" 
-                        />
-                        <element 
-                            title="Age" 
-                            name="age" 
-                            resizable="1" 
-                            sortable="0" 
-                            isId="0" 
-                            contentAlign="center" 
-                            editTemplateId="editTemplateId3" 
-                            itemTemplateId="itemTemplateId3" 
-                        />
-                    </header>
-                    <row>
-                        <cell name="id">1</cell>
-                        <cell name="name">John Doe</cell>
-                        <cell name="age">28</cell>
-                    </row>
-                </gridViewData>
-                <itemTemplates>
-                    <template id="itemTemplateId1">
-                        <templatebody>
-                        hello
-                        </templatebody>
-                    </template>
-                    <template id="itemTemplateId2">
-                        <templatebody>
-                            hello2
-                        </templatebody>
-                    </template>
-                    <template id="itemTemplateId3">
-                        <templatebody>
-                            hello2
-                        </templatebody>
-                    </template>
-                </itemTemplates>
-            </response> `;
+    var dkbmcData = `<response>
+    <parameters>
+        <orderBy>name</orderBy>
+        <order>asc</order>
+        <currentPage>1</currentPage>
+        <totalPages>3</totalPages>
+        <totalItems>30</totalItems>
+    </parameters>
+    <gridViewData>
+        <header>
+            <element title="ID" name="id" resizable="1" sortable="1" isId="1" contentAlign="center" />
+            <element title="Name" name="name" resizable="1" sortable="1" isId="0" contentAlign="left" />
+            <element title="Age" name="age" resizable="1" sortable="1" isId="0" contentAlign="right" />
+            <element title="Status" name="status" resizable="1" sortable="1" isId="0" contentAlign="center" />
+        </header>
+        <rows>
+            <row>
+                <cell name="id">1</cell>
+                <cell name="name">John Doe</cell>
+                <cell name="age">28</cell>
+                <cell name="status">active</cell>
+            </row>
+            <row>
+                <cell name="id">2</cell>
+                <cell name="name">Jane Smith</cell>
+                <cell name="age">34</cell>
+                <cell name="status">inactive</cell>
+            </row>
+            <row>
+                <cell name="id">3</cell>
+                <cell name="name">Emily Johnson</cell>
+                <cell name="age">22</cell>
+                <cell name="status">active</cell>
+            </row>
+            <row>
+                <cell name="id">4</cell>
+                <cell name="name">Michael Brown</cell>
+                <cell name="age">40</cell>
+                <cell name="status">inactive</cell>
+            </row>
+        </rows>
+    </gridViewData>
+    <filterLayer>
+        <filter id="nameFilter">
+            <value>name</value>
+            <title>Name</title>
+            <operator title="equals" value="equals" />
+            <operator title="contains" value="contains" />
+        </filter>
+        <filter id="ageFilter">
+            <value>age</value>
+            <title>Age</title>
+            <operator title="greater than" value="greater" />
+            <operator title="less than" value="less" />
+        </filter>
+        <filter id="statusFilter">
+            <value>status</value>
+            <title>Status</title>
+            <operator title="equals" value="equals" />
+        </filter>
+    </filterLayer>
+    <panelEntries>
+        <entry type="filter">Filter</entry>
+        <entry type="reload">Reload</entry>
+        <entry type="insert">Insert</entry>
+        <entry type="delete">Delete</entry>
+    </panelEntries>
+</response>
+
+`;
 
     var xmlDoc = $.parseXML(dkbmcData);
     $(document).ready(function() {
         $("#jqGridView").jqGridView({
-            width: 800 +'px',
+            width: "800px",
             editMode: false,
             data: xmlDoc,
             messages: {
                 saveChanges: 'Do you want to save the changes?'
             },
-            table: '#jqGridView' 
-           // url: '',
-           // url: "https://api.odcloud.kr/api/15029361/v1/uddi:f052ed65-fd7a-4668-b7a5-f4bae187d58c_201810192136",  // XML 데이터를 반환하는 서버 URL
-            //datatype: 'xml',
-            //messagesLayer: "#messageLayer",
-           /** params: {
-                page: 1,
-                perPage: 10,
-                returnType: "xml",
-                serviceKey: "d4Tv3fhoFt08iCetWmvZ7ePHLPJoTLK38nF5bIg6/iqeTGEPnSAQZc4lSfm6yKJxETYjwXei++T0rlQD05sM9w=="
-            }, **/ // Example table ID
-        })
+            table: '#jqGridView',
+            paging: true, // 페이징 활성화
+            sortable: true, // 정렬 활성화
+            filterable: true, // 필터링 활성화
+            itemInsert: function (e, form) {
+                const newRow = {
+                    id: form.find("input[name='id']").val(),
+                    name: form.find("input[name='name']").val(),
+                    age: form.find("input[name='age']").val(),
+                    status: form.find("select[name='status']").val()
+                };
+
+                // 데이터 배열에 새 행 추가
+                config.rows.push(newRow);
+
+                // 테이블 다시 로드
+                config.reload();
+                console.log("새로운 데이터 추가:", newRow);
+            }
+        });
     });
     $.fn.jqGridView = function(cfg) {
         var gridView = function() {
@@ -153,7 +160,9 @@
                         'imagesUrl': cfg.imagesUrl || './',
                         'save': cfg.save,
                         'itemInsert': cfg.itemInsert,
-                        'itemDelete': cfg.itemDelete
+                        'itemDelete': cfg.itemDelete,
+                        
+                        
                     };
 
                     // delete modification indicators
@@ -213,7 +222,8 @@
 
                     //==========================
                     var xml = cfg.data;
-                    // destroy previous config object
+                    // destroy previous config objectbuildGridTools
+                    
                     cfg = null;
                     // get previous columns width
                     getPrevWidths(config);
@@ -480,16 +490,17 @@
                         });
                         // create panel entries list
                         config.panelEntries = [];
-                        $(xml).find('topPanel>entry').each(function(i) {
+                        $(xml).find('panelEntries>entry').each(function (i) {
                             var entry = {
                                 type: $(this).attr('type') || 'custom',
-                                value: $(this).text()
+                                value: $(this).text(),
                             };
-                            config.panelEntries[i] = entry;
+                            config.panelEntries.push(entry);
                         });
+                    
                         // footer translations
                         config.translations = [];
-                        $(xml).find('translations>add').each(function(i) {
+                        $(xml).find('translations>add').each(function (i) {
                             config.translations[$(this).attr('key').toLowerCase()] = $(this).attr('value');
                         });
                         // retrive edit templates
@@ -1109,6 +1120,7 @@
                     }
     
                     function createTopPanel() {
+                        console.log('config.panelEntries.length =====> ' , config.panelEntries.length);
                         if (config.panelEntries.length < 1) return;
                         // create dom element
                         var table = document.createElement("table");
@@ -1499,6 +1511,12 @@
                 tableRight: 0,
                 resizeLimit: 0,
                 resizing: false,
+                panelEntries: [
+                    { type: 'filter', value: 'Filter' },
+                    { type: 'reload', value: 'Reload' },
+                    { type: 'insert', value: 'Insert' },
+                    { type: 'delete', value: 'Delete' }
+                ],
                 target: null
             });
             gridView.build($(this)[0], config);
@@ -1507,11 +1525,6 @@
 </script>
 <body>
     <div id="jqGridView"></div>
-    <div id="messageLayer" style="display:none; padding: 10px; background-color: #f8f8f8; border: 1px solid #ccc;">
-        <div class="gridInsertPanel_body"></div>
-        <button id="btnYes">Yes</button>
-        <button id="btnNo">No</button>
-    </div>
 
 </body>
 </html>
