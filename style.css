@@ -1,0 +1,14 @@
+.grid {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.grid th, .grid td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.grid th {
+    background-color: #f2f2f2;
+    text-align: left;
+}

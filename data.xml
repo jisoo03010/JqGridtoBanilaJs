@@ -1,0 +1,79 @@
+ <response>
+                <parameters>
+                    <orderBy>name</orderBy>
+                    <order>asc</order>
+                    <currentPage>1</currentPage>
+                    <totalPages>5</totalPages>
+                    <totalItems>50</totalItems>
+                    <currentFilter name="name" operator="equals" value="John Doe" isQuoted="1"/>
+                </parameters>
+                <gridViewData>
+                    <header>
+                        <element 
+                            title="ID" 
+                            name="id" 
+                            width="50" 
+                            resizable="1" 
+                            sortable="1" 
+                            isId="1" 
+                            contentAlign="center" 
+                            editTemplateId="editTemplateId1" 
+                            itemTemplateId="itemTemplateId1" 
+                        />
+                        <element 
+                            title="Name" 
+                            name="name" 
+                            width="150" 
+                            resizable="1" 
+                            sortable="1" 
+                            isId="0" 
+                            contentAlign="left" 
+                            editTemplateId="editTemplateId2" 
+                            itemTemplateId="itemTemplateId2" 
+                        />
+                        <element 
+                            title="Age" 
+                            name="age" 
+                            width="100" 
+                            resizable="1" 
+                            sortable="0" 
+                            isId="0" 
+                            contentAlign="right" 
+                            editTemplateId="editTemplateId3" 
+                            itemTemplateId="itemTemplateId3" 
+                        />
+                    </header>
+                    <row>
+                        <cell name="id">1</cell>
+                        <cell name="name">John Doe</cell>
+                        <cell name="age">28</cell>
+                    </row>
+                    <row>
+                        <cell name="id">1</cell>
+                        <cell name="name">John Doe</cell>
+                        <cell name="age">28</cell>
+                    </row>
+                    <row>
+                        <cell name="id">1</cell>
+                        <cell name="name">John Doe</cell>
+                        <cell name="age">28</cell>
+                    </row>
+                </gridViewData>
+                <itemTemplates>
+                    <template id="itemTemplateId1">
+                        <templatebody>
+                            hello
+                        </templatebody>
+                    </template>
+                    <template id="itemTemplateId2">
+                        <templatebody>
+                            hello2
+                        </templatebody>
+                    </template>
+                    <template id="itemTemplateId3">
+                        <templatebody>
+                            hello2
+                        </templatebody>
+                    </template>
+                </itemTemplates>
+            </response> 
