@@ -11,24 +11,73 @@
     <link rel="stylesheet" href="dpSyntaxHighlighter.css">
 </head>
 <script>
-
-  
-
     var dkbmcData = `<response>
                         <parameters>
                             <orderBy>name</orderBy>
                             <order>asc</order>
                             <currentPage>1</currentPage>
                             <totalPages>3</totalPages>
-                            <totalItems>30</totalItems>
+                            <totalItems>12</totalItems>
                         </parameters>
                         <gridViewData>
                             <header>
-                                <element title="ID" name="id" resizable="1" sortable="1" isId="1" contentAlign="center" />
-                                <element title="Name" name="name" resizable="1" sortable="1"  isId="0" contentAlign="left" />
-                                <element title="Age" name="age" resizable="1" sortable="1" isId="0" contentAlign="right" />
-                                <element title="Status" name="status" resizable="1" sortable="1" isId="0" contentAlign="center" />
+                                <element title="ID" name="id" resizable="1" sortable="1" isId="1" contentAlign="center" editTemplateId="textTemplate"  />
+                                <element title="Name" name="name" resizable="1" sortable="1"  isId="0" contentAlign="left" editTemplateId="textTemplate" />
+                                <element title="Age" name="age" resizable="1" sortable="1" isId="0" contentAlign="right" editTemplateId="textTemplate"/>
+                                <element title="Status" name="status" resizable="1" sortable="1" isId="0" contentAlign="center" editTemplateId="dropDownTemplate" />
                             </header>
+                            <rows>
+                                <row>
+                                    <cell name="id" >1</cell>
+                                    <cell name="name">John Doe</cell>
+                                    <cell name="age">28</cell>
+                                    <cell name="status">active</cell>
+                                </row>
+                                <row>
+                                    <cell name="id">2</cell>
+                                    <cell name="name">Jane Smith</cell>
+                                    <cell name="age">34</cell>
+                                    <cell name="status">inactive</cell>
+                                </row>
+                                <row>
+                                    <cell name="id">3</cell>
+                                    <cell name="name">Emily Johnson</cell>
+                                    <cell name="age">22</cell>
+                                    <cell name="status">active</cell>
+                                </row>
+                                <row>
+                                    <cell name="id">4</cell>
+                                    <cell name="name">Michael Brown</cell>
+                                    <cell name="age">40</cell>
+                                    <cell name="status">inactive</cell>
+                                </row>
+                            </rows>
+                            <rows>
+                                <row>
+                                    <cell name="id" >1</cell>
+                                    <cell name="name">John Doe</cell>
+                                    <cell name="age">28</cell>
+                                    <cell name="status">active</cell>
+                                </row>
+                                <row>
+                                    <cell name="id">2</cell>
+                                    <cell name="name">Jane Smith</cell>
+                                    <cell name="age">34</cell>
+                                    <cell name="status">inactive</cell>
+                                </row>
+                                <row>
+                                    <cell name="id">3</cell>
+                                    <cell name="name">Emily Johnson</cell>
+                                    <cell name="age">22</cell>
+                                    <cell name="status">active</cell>
+                                </row>
+                                <row>
+                                    <cell name="id">4</cell>
+                                    <cell name="name">Michael Brown</cell>
+                                    <cell name="age">40</cell>
+                                    <cell name="status">inactive</cell>
+                                </row>
+                            </rows>
                             <rows>
                                 <row>
                                     <cell name="id" >1</cell>
@@ -82,23 +131,21 @@
                             <entry type="delete">Delete</entry>
                         </panelEntries>
                         <editTemplates>
-                        <template id="textTemplate" type="textBox" />
-
-                        <template id="checkBoxTemplate">
-                            <content>
-                                <entry text="Yes" value="checked"  type="checkBox"/>
-                                <entry text="No" value="unchecked" />
-                            </content>
-                        </template>
-
-                        <template id="dropDownTemplate" type="dropDownList" valueColumn="status">
-                            <content>
-                                <entry text="Active" value="active" />
-                                <entry text="Inactive" value="inactive" />
-                                <entry text="Pending" value="pending" />
-                            </content>
-                        </template>
-                    </editTemplates>
+                            <template id="textTemplate" type="textBox" />
+                            <template id="checkBoxTemplate">
+                                <content>
+                                    <entry text="Yes" value="checked" type="checkBox" />
+                                    <entry text="No" value="unchecked" />
+                                </content>
+                            </template>
+                            <template id="dropDownTemplate" type="dropDownList" valueColumn="status">
+                                <content>
+                                    <entry text="Active" value="active" />
+                                    <entry text="Inactive" value="inactive" />
+                                    <entry text="Pending" value="pending" />
+                                </content>
+                            </template>
+                        </editTemplates>
                     <translations>
                         <add key="hello" value="Hello" />
                         <add key="goodbye" value="Goodbye" />
@@ -431,6 +478,7 @@
                                 var div = document.createElement('div');
                                 $(div).attr('align', config.headers[j].contentAlign);
                                 // check if row is editable
+                                console.log("행 편집 가능 여부 ===> ", config.headers[j].editTemplateId)
                                 if (config.headers[j].editTemplateId) {
                                     $(div).css({ 'cursor': 'pointer' });
                                     $(div).bind('dblclick', buildEditTemplate);
@@ -595,6 +643,7 @@
                     }
     
                     function buildEditTemplate(e) {
+                        console.log('buildEditTemplate 실행!')
                         if (!config.editMode) {
                             // get current column index
                             var eTarget = e.target;
@@ -1279,14 +1328,23 @@
                         return false
                     }
     
+
+                    //사이징 클릭시 실행되는 method
                     function startResize(e) {
+                        console.log('편집 모드 활성화 되어 있음.!!!');
                         if (config.editMode) {
+                            
                             if (typeof(config.cancelEditMode) == 'function') {
+                                console.log('typeof(config.cancelEditMode) ==>', typeof(config.cancelEditMode));
                                 config.cancelEditMode();
                             } else {
                                 return false;
                             }
                         }
+
+
+                        console.log('gridView ===>', gridView);
+                        console.log('gridView ===>', gridView.getAbsoluteLeft(e.target) );
                         config.target = {
                             me: e.target,
                             parent: $(e.target).parent(),
@@ -1488,10 +1546,14 @@
                 getAbsoluteLeft: function(object) {
                     // Get left position from the parent object
                     var left = $(object)[0].offsetLeft;
+
+                    
+                    object = $(object).offsetParent();
+                    console.log('object.offsetParent =====>', object[0]);
                     // Parsfe the parent hierarchy up to the document element
-                    while ($(object).offsetParent) {
+                    while ($(object).offsetParent()) {
                         // Add parent left position
-                        object = $(object).offsetParent;
+                        object = $(object).offsetParent();
                         left += $(object)[0].offsetLeft;
                     }
                     // Return left postion
