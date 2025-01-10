@@ -15,81 +15,102 @@
   
 
     var dkbmcData = `<response>
-    <parameters>
-        <orderBy>name</orderBy>
-        <order>asc</order>
-        <currentPage>1</currentPage>
-        <totalPages>3</totalPages>
-        <totalItems>30</totalItems>
-    </parameters>
-    <gridViewData>
-        <header>
-            <element title="ID" name="id" resizable="1" sortable="1" isId="1" contentAlign="center" />
-            <element title="Name" name="name" resizable="1" sortable="1" isId="0" contentAlign="left" />
-            <element title="Age" name="age" resizable="1" sortable="1" isId="0" contentAlign="right" />
-            <element title="Status" name="status" resizable="1" sortable="1" isId="0" contentAlign="center" />
-        </header>
-        <rows>
-            <row>
-                <cell name="id">1</cell>
-                <cell name="name">John Doe</cell>
-                <cell name="age">28</cell>
-                <cell name="status">active</cell>
-            </row>
-            <row>
-                <cell name="id">2</cell>
-                <cell name="name">Jane Smith</cell>
-                <cell name="age">34</cell>
-                <cell name="status">inactive</cell>
-            </row>
-            <row>
-                <cell name="id">3</cell>
-                <cell name="name">Emily Johnson</cell>
-                <cell name="age">22</cell>
-                <cell name="status">active</cell>
-            </row>
-            <row>
-                <cell name="id">4</cell>
-                <cell name="name">Michael Brown</cell>
-                <cell name="age">40</cell>
-                <cell name="status">inactive</cell>
-            </row>
-        </rows>
-    </gridViewData>
-    <filterLayer>
-        <filter id="nameFilter">
-            <value>name</value>
-            <title>Name</title>
-            <operator title="equals" value="equals" />
-            <operator title="contains" value="contains" />
-        </filter>
-        <filter id="ageFilter">
-            <value>age</value>
-            <title>Age</title>
-            <operator title="greater than" value="greater" />
-            <operator title="less than" value="less" />
-        </filter>
-        <filter id="statusFilter">
-            <value>status</value>
-            <title>Status</title>
-            <operator title="equals" value="equals" />
-        </filter>
-    </filterLayer>
-    <panelEntries>
-        <entry type="filter">Filter</entry>
-        <entry type="reload">Reload</entry>
-        <entry type="insert">Insert</entry>
-        <entry type="delete">Delete</entry>
-    </panelEntries>
-</response>
+                        <parameters>
+                            <orderBy>name</orderBy>
+                            <order>asc</order>
+                            <currentPage>1</currentPage>
+                            <totalPages>3</totalPages>
+                            <totalItems>30</totalItems>
+                        </parameters>
+                        <gridViewData>
+                            <header>
+                                <element title="ID" name="id" resizable="1" sortable="1" isId="1" contentAlign="center" />
+                                <element title="Name" name="name" resizable="1" sortable="1"  isId="0" contentAlign="left" />
+                                <element title="Age" name="age" resizable="1" sortable="1" isId="0" contentAlign="right" />
+                                <element title="Status" name="status" resizable="1" sortable="1" isId="0" contentAlign="center" />
+                            </header>
+                            <rows>
+                                <row>
+                                    <cell name="id" >1</cell>
+                                    <cell name="name">John Doe</cell>
+                                    <cell name="age">28</cell>
+                                    <cell name="status">active</cell>
+                                </row>
+                                <row>
+                                    <cell name="id">2</cell>
+                                    <cell name="name">Jane Smith</cell>
+                                    <cell name="age">34</cell>
+                                    <cell name="status">inactive</cell>
+                                </row>
+                                <row>
+                                    <cell name="id">3</cell>
+                                    <cell name="name">Emily Johnson</cell>
+                                    <cell name="age">22</cell>
+                                    <cell name="status">active</cell>
+                                </row>
+                                <row>
+                                    <cell name="id">4</cell>
+                                    <cell name="name">Michael Brown</cell>
+                                    <cell name="age">40</cell>
+                                    <cell name="status">inactive</cell>
+                                </row>
+                            </rows>
+                        </gridViewData>
+                        <filterLayer>
+                            <filter id="nameFilter">
+                                <value>name</value>
+                                <title>Name</title>
+                                <operator title="equals" value="equals" />
+                                <operator title="contains" value="contains" />
+                            </filter>
+                            <filter id="ageFilter">
+                                <value>age</value>
+                                <title>Age</title>
+                                <operator title="greater than" value="greater" />
+                                <operator title="less than" value="less" />
+                            </filter>
+                            <filter id="statusFilter">
+                                <value>status</value>
+                                <title>Status</title>
+                                <operator title="equals" value="equals" />
+                            </filter>
+                        </filterLayer>
+                        <panelEntries>
+                            <entry type="filter">Filter</entry>
+                            <entry type="reload">Reload</entry>
+                            <entry type="insert">Insert</entry>
+                            <entry type="delete">Delete</entry>
+                        </panelEntries>
+                        <editTemplates>
+                        <template id="textTemplate" type="textBox" />
 
-`;
+                        <template id="checkBoxTemplate">
+                            <content>
+                                <entry text="Yes" value="checked"  type="checkBox"/>
+                                <entry text="No" value="unchecked" />
+                            </content>
+                        </template>
+
+                        <template id="dropDownTemplate" type="dropDownList" valueColumn="status">
+                            <content>
+                                <entry text="Active" value="active" />
+                                <entry text="Inactive" value="inactive" />
+                                <entry text="Pending" value="pending" />
+                            </content>
+                        </template>
+                    </editTemplates>
+                    <translations>
+                        <add key="hello" value="Hello" />
+                        <add key="goodbye" value="Goodbye" />
+                        <add key="name" value="Name" />
+                    </translations>
+                    </response>`;
 
     var xmlDoc = $.parseXML(dkbmcData);
     $(document).ready(function() {
         $("#jqGridView").jqGridView({
             width: "800px",
-            editMode: false,
+            editMode: true,
             data: xmlDoc,
             messages: {
                 saveChanges: 'Do you want to save the changes?'
@@ -121,7 +142,7 @@
                 build: function(div, cfg) {
                     console.log("build 실행!", div);
                     // check edit mode
-                    if (cfg.editMode) return;
+                    if (!cfg.editMode) return;
                     if (cfg.modifiedRows != undefined) {
                         if (cfg.modifiedRows.length > 0) {
                             
@@ -146,6 +167,7 @@
                             return;
                         }
                     }
+
                     var config = {
                         'width': cfg.width,
                         'url': cfg.url,
@@ -157,7 +179,7 @@
                         'editLayer': cfg.editLayer,
                         'insertLayer': cfg.insertLayer,
                         'table': cfg.table,
-                        'imagesUrl': cfg.imagesUrl || './',
+                        'imagesUrl': cfg.imagesUrl || '',
                         'save': cfg.save,
                         'itemInsert': cfg.itemInsert,
                         'itemDelete': cfg.itemDelete,
@@ -200,14 +222,6 @@
                           $(config.table).get(0).offsetWidth : config.width) + 'px'
                     });
                     // check if main table exists yet
-                    console.log("check 테이블 ====== ")
-                    let checktable = $(div).find("table[id^='jqGridView']");
-                    console.log(checktable);
-                    console.log("================== ")
-
-
-
-
                     if ($(div).find("table[id^='jqGridView']").length > 0) {
                         var previousGrid = $(div).find("table[id^='jqGridView']").get(0);
                         $(config.loadingLayer).insertAfter(previousGrid);
@@ -427,7 +441,6 @@
                                 });
                                 // check for template column
                                 //debugger
-                                console.log('config.headers[j].itemTemplateId ===> ', config.headers[j].itemTemplateId);
                                 if (config.headers[j].itemTemplateId) {
                                     var templateId = config.headers[j].itemTemplateId;
                                     var template = $(xml)
@@ -447,9 +460,7 @@
                                     
                                     $(div).append(template);
                                 } else {
-                                    console.log(config.headers[j]);
                                     let row1 = $(row);
-                                    console.log(row1);
                                     $(div).append($(row).find("cell[name='" + config.headers[j].name + "']").text());
                                 }
                                 $(td).append(div);
@@ -463,13 +474,17 @@
                     }
     
                     function buildGridTools(xml, config) {
+                        console.log('buildGridTools !!')
                         // get messages
                         config.messages = [];
                         config.messages['saveChanges'] =
                             $(xml).find('messages>saveChanges').text() || 'Save changes?';
                         config.messages['deleteLine'] =
                             $(xml).find('messages>deleteLine').text() || 'Delete line ?'
+                            
+                        console.log("config.messages =>>", config.messages)
                         // create filters container
+                        
                         config.filters = [];
                         // build filter descriptor
                         $(xml).find('filter').each(function(i) {
@@ -488,6 +503,8 @@
                                 };
                             });
                         });
+                        
+                        console.log("config.messages =>>", config.filters)
                         // create panel entries list
                         config.panelEntries = [];
                         $(xml).find('panelEntries>entry').each(function (i) {
@@ -497,12 +514,14 @@
                             };
                             config.panelEntries.push(entry);
                         });
+                        console.log("config.panelEntries =>>", config.panelEntries)
                     
                         // footer translations
                         config.translations = [];
                         $(xml).find('translations>add').each(function (i) {
                             config.translations[$(this).attr('key').toLowerCase()] = $(this).attr('value');
                         });
+                        
                         // retrive edit templates
                         config.editTemplates = [];
                         $(xml).find('editTemplates>template').each(function(i) {
@@ -548,7 +567,6 @@
                         $(messageLayer).attr('id', 'message');
                         // check if result is well-formed
                         let gridviewDataXml = $(xml).find('gridViewData');
-                        console.log('gridviewDataXml ===>>>>> ', gridviewDataXml);
                         if ($(xml).find('gridViewData').children().size() == 0) {
                             // add message text
                             $(messageLayer).find('div')
@@ -639,6 +657,7 @@
                                 'font-size': $(eTarget).css('font-size')
                             };
                             // check template type
+
                             switch (template.type) {
                                 case 'textBox':
                                     var input = document.createElement('input');
@@ -1131,9 +1150,17 @@
                         for (var i = 0; i < config.panelEntries.length; i++) {
                             // TODO assign funcion by entry type
                             var span = document.createElement('span');
-                            $(span).append(config.panelEntries[i].value);
+                            //$(span).append(config.panelEntries[i].value);
                             $(content).append(span);
                             $(span).css({ cursor: 'pointer' });
+
+                            var img = document.createElement('img');
+                            img.src = config.imagesUrl + config.panelEntries[i].type + '.gif'; // filter.gif, insert.gif, delete.gif 같은 파일을 사용
+                            img.style.marginRight = '5px';
+                    
+                            // 이미지를 span에 추가
+                            span.appendChild(img);
+
                             bindEventByType(span, config.panelEntries[i]);
                         }
                         $(td).append(content);

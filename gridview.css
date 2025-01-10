@@ -24,7 +24,7 @@
 		color: #15428B;
 		height:12px;
 		border-top: 1px solid #99BBE8;
-		background-image: url("../images/grid-hrow.gif");
+		background-image: url("grid-hrow.gif");
 	}l
 	.grid_tr_odd {
 		background: #F5FAFE;
@@ -50,7 +50,7 @@
 		margin:-2px -1px -2px 0px;
 		width:7px;
 		background: no-repeat center right;
-		/*background-image: url("../images/split.gif");*/
+		background-image: url("split.gif");
 	}
 	.gridLoader {
 		border: 1px solid #99BBE8;
@@ -60,8 +60,8 @@
 	}
 	.gridHeader {
 		color: #15428B;
-		/*background: url("../images/grid-hrow.gif");*/
-		background: #D0DEF0;
+		background: url("grid-hrow.gif");
+		/* background: #D0DEF0; */
 		/*height: 15px;*/
 		border: 1px solid #99BBE8;
 		border-bottom :0px;
