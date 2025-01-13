@@ -9,8 +9,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <link rel="stylesheet" href="gridview.css">
     <link rel="stylesheet" href="dpSyntaxHighlighter.css">
+    <link rel="stylesheet" type="text/css" href="path/to/jquery-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="path/to/ui.jqgrid.css" />
+
+    <script src="path/to/jquery.min.js"></script>
+    <script src="path/to/grid.locale-kr.js"></script>
+    <script src="path/to/jquery.jqGrid.min.js"></script>
 </head>
 <script>
+    
     var dkbmcData = `<response>
                         <parameters>
                             <orderBy>id</orderBy>
@@ -23,8 +30,8 @@
                             <header>
                                 <element title="ID" name="id" resizable="1" sortable="1" isId="1" contentAlign="center" editTemplateId="textTemplate"  />
                                 <element title="Name" name="name" resizable="1" sortable="1"  contentAlign="left" editTemplateId="textTemplate" />
-                                <element title="Age" name="age" resizable="1"  contentAlign="right" editTemplateId="textTemplate"/>
-                                <element title="Status" name="status" resizable="1" contentAlign="center" editTemplateId="dropDownTemplate" />
+                                <element title="Age" name="age" resizable="1"  sortable="0"  contentAlign="right" editTemplateId="textTemplate"/>
+                                <element title="Status" name="status" resizable="1" sortable="0"  contentAlign="center" editTemplateId="dropDownTemplate" />
                             </header>
                             
                             <rows>
@@ -157,21 +164,17 @@
                             </rows>
                         </gridViewData>
                         <filterLayer>
-                            <filter id="nameFilter">
-                                <value>name</value>
-                                <title>Name</title>
+                            <filter id="nameFilter" value="name" title="Name">
                                 <operator title="equals" value="equals" />
                                 <operator title="contains" value="contains" />
                             </filter>
-                            <filter id="ageFilter">
+                            <filter id="ageFilter" value="age"  title="Age">
                                 <value>age</value>
                                 <title>Age</title>
                                 <operator title="greater than" value="greater" />
                                 <operator title="less than" value="less" />
                             </filter>
-                            <filter id="statusFilter">
-                                <value>status</value>
-                                <title>Status</title>
+                            <filter id="statusFilter"  value="status"  title="Status">
                                 <operator title="equals" value="equals" />
                             </filter>
                         </filterLayer>
@@ -208,6 +211,7 @@
                     </response>`;
 
     var xmlDoc = $.parseXML(dkbmcData);
+    var config
     $(document).ready(function() {
         $("#jqGridView").jqGridView({
             width: "800px",
@@ -222,55 +226,51 @@
             sortable: true, // 정렬 활성화
             filterable: true, // 필터링 활성화
             itemInsert: function (e, form) {
-                console.log('form ==> ', form);
                 const newRow = {
                     id: form.find("input[name='id']").val(),
                     name: form.find("input[name='name']").val(),
                     age: form.find("input[name='age']").val(),
                     status: form.find("select[name='status']").val()
                 };
-
-                // 데이터 배열에 새 행 추가
+            
                 config.rows.push(newRow);
-                // 테이블 다시 로드
-                config.reload();
+                buildBody(xmlDoc, config); // 테이블 다시 빌드
             },
-            itemDelete: function (e, row) {
-                if (confirm(this.messages.deleteConfirm)) {
-                    console.log('row index => ', row);
-                    // 선택한 행 삭제
-                    const index = config.rows.findIndex(r => r.id === row.id);
-                    if (index !== -1) {
-                        // 삭제할 항목 정보 전달
-                        const item = {
-                            id: row.id, // 행의 ID
-                            name: row.name, // 행의 name
-                            age: row.age, // 행의 age
-                            status: row.status // 행의 status
-                        };
+            itemDelete: function (e, item) {
+                // 현재 선택된 행 데이터를 가져옵니다.
+                const selectedRow = item.parentRow;
             
-                        // 삭제 후 행 제거
-                        config.rows.splice(index, 1); // 배열에서 제거
-                        config.reload(); // 테이블 다시 로드
-            
-                        // 삭제 함수 호출
-                        if (typeof(config.itemDelete) === 'function') {
-                            config.itemDelete(e, item);
-                        }
-                    } else {
-                        alert('Row not found!');
-                    }
+                if (!selectedRow) {
+                    alert('No row selected!');
+                    return;
                 }
-            }
             
-    
+                // 삭제할 행의 ID를 찾습니다.
+                const rowId = selectedRow.id;
+            
+                // 데이터 배열에서 삭제할 행의 인덱스를 찾습니다.
+                const rowIndex = config.rows.findIndex((row) => row.id === rowId);
+            
+                if (rowIndex === -1) {
+                    alert('Row not found!');
+                    return;
+                }
+            
+                // 데이터를 삭제합니다.
+                config.rows.splice(rowIndex, 1);
+            
+                // UI를 갱신합니다.
+                gridView.buildBody(xmlDoc, config);// 테이블의 본문(body)을 다시 빌드
+            
+                alert(`Row with ID ${rowId} has been deleted successfully.`);
+            }
         });
     });
     $.fn.jqGridView = function(cfg) {
         var gridView = function() {
             return {
                 build: function(div, cfg) {
-                    console.log("build 실행!", div);
+                    console.log("build 실행!", cfg);
                     // check edit mode
                     if (!cfg.editMode) return;
                     if (cfg.modifiedRows != undefined) {
@@ -297,7 +297,7 @@
                             return;
                         }
                     }
-                    var config = {
+                    config = {
                         'width': cfg.width,
                         'url': cfg.url,
                         'minWidth': cfg.minWidth,
@@ -311,9 +311,7 @@
                         'imagesUrl': cfg.imagesUrl || '',
                         'save': cfg.save,
                         'itemInsert': cfg.itemInsert,
-                        'itemDelete': cfg.itemDelete,
-                        
-                        
+                        'itemDelete': cfg.itemDelete, 
                     };
 
                     // delete modification indicators
@@ -352,6 +350,7 @@
                     });
                     // check if main table exists yet
                     if ($(div).find("table[id^='jqGridView']").length > 0) {
+                        console.log('sort할떄 됨');
                         var previousGrid = $(div).find("table[id^='jqGridView']").get(0);
                         $(config.loadingLayer).insertAfter(previousGrid);
                         $(previousGrid).attr('id', 'previousGrid');
@@ -1388,17 +1387,21 @@
                     }
     
                     function sort(e) {
-                        console.log('sort =====> ');
+                        // 클릭된 애의 config.rderBy 값이 클릭된 값에 대한 애를 가져오지 못함.
                         var index = $(e.target).parent().parent().children().index($(e.target).parent()[0]);
                         config.orderBy = config.headers[index].name || '';
+                        console.log('config.orderBy ===> ', config.orderBy);
                         // calculate sort order
-                        config.order = (config.headers[index].order.toLowerCase() == 'asc') ? 'DESC' : 'ASC';
+                        config.order = (config.headers[index].order.toLowerCase() == 'desc') ? 'DESC' : 'ASC';
+                        console.log('sort =====> ', config.headers);
                         $(config.table).parent()
                             .find("input[id^='orderby']")
                             .val(config.headers[index].name);
                         // prepare request parameters
                         serializeParams();
                         // rebuild grid view
+                        var dddd = $(config.table).parent()[0];
+                        console.log('dddddd ====> ', dddd)
                         gridView.build($(config.table).parent()[0], config);
                         return false;
                     }
@@ -1569,8 +1572,9 @@
                     }
     
                     function changeFilterOptions(e) {
+                        console.log('e.target.selectedIndex ===!! > ');
                         var selectOp = $(e.target).next();
-                        var id = e.target.options[e.target.selectedIndex].id;
+                        let id = e.target.options[e.target.selectedIndex].id;
                         $(selectOp).empty();
                         if (!id) {
                             // disable button
@@ -1726,6 +1730,5 @@
 </script>
 <body>
     <div id="jqGridView"></div>
-
 </body>
 </html>

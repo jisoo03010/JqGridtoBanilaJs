@@ -247,7 +247,6 @@ jQuery.jqGridView = function (gridViewClientID, options) {
             gv_data_left.height(dataAreaHeight - 18);
             gv_data_right.height(dataAreaHeight);
         }
-        //设置滚动事件
         $('.gv-data-right').scroll(function () {
             $('.gv-data-left').scrollTop($(this).scrollTop());
             $('.gv-header-right').scrollLeft($(this).scrollLeft());
