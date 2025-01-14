@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jqGridView Example</title>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      -->
+    <script src="jqgridview-to-js-json.js"></script>
+    <link rel="stylesheet" href="/gridview.css">
+    <link rel="stylesheet" href="/dpSyntaxHighlighter.css">
+</head>
+<script>
+    const jsonFilePath = '/sampleData.json';
+    document.addEventListener("DOMContentLoaded", function() {
+        let viewElement = document.getElementById('jqGridView');
+        fetch(jsonFilePath)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json(); 
+            })
+            .then((jsonData) => {
+                console.log('JSON Data Loaded:', jsonData);
+                jqGridView(viewElement, {
+                    editMode: true,
+                    data: jsonData, 
+                    imagesUrl: './images/',
+                    messages: {
+                        saveChanges: 'Do you want to save the changes?',
+                        deleteConfirm: 'Do you really want to delete this row?'
+                    },
+                    
+                    table: '#jqGridView',
+                    paging: true, // 페이징 활성화
+                    sortable: true, // 정렬 활성화
+                    filterable: true, // 필터링 활성화
+                    itemInsert: function (e) {}, // 저장 기능 
+                    itemDelete: function () {alert(`Row with ID  has been deleted successfully.`);} // 삭제 기능
+                });
+            })
+            .catch((error) => {
+                console.error('Error loading JSON file:', error);
+            });
+    });
+</script>
+<body>
+    <div id="jqGridView"></div> 
+</body>
+</html>

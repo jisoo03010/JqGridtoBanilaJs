@@ -1,0 +1,850 @@
+{
+    "response": {
+        "parameters": {
+            "orderBy": {
+                "text": "id"
+            },
+            "order": {
+                "text": "desc"
+            },
+            "currentPage": {
+                "text": "1"
+            },
+            "totalPages": {
+                "text": "4"
+            },
+            "totalItems": {
+                "text": "20"
+            }
+        },
+        "gridViewData": {
+            "header": {
+                "element": [
+                    {
+                        "attributes": {
+                            "title": "ID",
+                            "name": "id",
+                            "resizable": "1",
+                            "sortable": "1",
+                            "isId": "1",
+                            "contentAlign": "center",
+                            "editTemplateId": "textTemplate"
+                        }
+                    },
+                    {
+                        "attributes": {
+                            "title": "Name",
+                            "name": "name",
+                            "resizable": "1",
+                            "sortable": "1",
+                            "contentAlign": "left",
+                            "editTemplateId": "textTemplate"
+                        }
+                    },
+                    {
+                        "attributes": {
+                            "title": "Age",
+                            "name": "age",
+                            "resizable": "1",
+                            "sortable": "0",
+                            "contentAlign": "right",
+                            "editTemplateId": "textTemplate"
+                        }
+                    },
+                    {
+                        "attributes": {
+                            "title": "Status",
+                            "name": "status",
+                            "resizable": "1",
+                            "sortable": "0",
+                            "contentAlign": "center",
+                            "editTemplateId": "dropDownTemplate"
+                        }
+                    }
+                ]
+            },
+            "rows": {
+                "row": [
+                    {
+                        "cell": [
+                            {
+                                "attributes": {
+                                    "name": "id"
+                                },
+                                "text": "4"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "name"
+                                },
+                                "text": "John Doe"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "age"
+                                },
+                                "text": "28"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "status"
+                                },
+                                "text": "active"
+                            }
+                        ]
+                    },
+                    {
+                        "cell": [
+                            {
+                                "attributes": {
+                                    "name": "id"
+                                },
+                                "text": "2"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "name"
+                                },
+                                "text": "Jane Smith"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "age"
+                                },
+                                "text": "34"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "status"
+                                },
+                                "text": "inactive"
+                            }
+                        ]
+                    },
+                    {
+                        "cell": [
+                            {
+                                "attributes": {
+                                    "name": "id"
+                                },
+                                "text": "3"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "name"
+                                },
+                                "text": "Emily Johnson"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "age"
+                                },
+                                "text": "22"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "status"
+                                },
+                                "text": "active"
+                            }
+                        ]
+                    },
+                    {
+                        "cell": [
+                            {
+                                "attributes": {
+                                    "name": "id"
+                                },
+                                "text": "4"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "name"
+                                },
+                                "text": "Michael Brown"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "age"
+                                },
+                                "text": "40"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "status"
+                                },
+                                "text": "inactive"
+                            }
+                        ]
+                    },
+                    {
+                        "cell": [
+                            {
+                                "attributes": {
+                                    "name": "id"
+                                },
+                                "text": "4"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "name"
+                                },
+                                "text": "Michael Brown"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "age"
+                                },
+                                "text": "40"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "status"
+                                },
+                                "text": "inactive"
+                            }
+                        ]
+                    },
+                    {
+                        "cell": [
+                            {
+                                "attributes": {
+                                    "name": "id"
+                                },
+                                "text": "4"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "name"
+                                },
+                                "text": "Michael Brown"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "age"
+                                },
+                                "text": "40"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "status"
+                                },
+                                "text": "inactive"
+                            }
+                        ]
+                    },
+                    {
+                        "cell": [
+                            {
+                                "attributes": {
+                                    "name": "id"
+                                },
+                                "text": "4"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "name"
+                                },
+                                "text": "Michael Brown"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "age"
+                                },
+                                "text": "40"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "status"
+                                },
+                                "text": "inactive"
+                            }
+                        ]
+                    },
+                    {
+                        "cell": [
+                            {
+                                "attributes": {
+                                    "name": "id"
+                                },
+                                "text": "4"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "name"
+                                },
+                                "text": "Michael Brown"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "age"
+                                },
+                                "text": "40"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "status"
+                                },
+                                "text": "inactive"
+                            }
+                        ]
+                    },
+                    {
+                        "cell": [
+                            {
+                                "attributes": {
+                                    "name": "id"
+                                },
+                                "text": "4"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "name"
+                                },
+                                "text": "Michael Brown"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "age"
+                                },
+                                "text": "40"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "status"
+                                },
+                                "text": "inactive"
+                            }
+                        ]
+                    },
+                    {
+                        "cell": [
+                            {
+                                "attributes": {
+                                    "name": "id"
+                                },
+                                "text": "4"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "name"
+                                },
+                                "text": "Michael Brown"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "age"
+                                },
+                                "text": "40"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "status"
+                                },
+                                "text": "inactive"
+                            }
+                        ]
+                    },
+                    {
+                        "cell": [
+                            {
+                                "attributes": {
+                                    "name": "id"
+                                },
+                                "text": "4"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "name"
+                                },
+                                "text": "Michael Brown"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "age"
+                                },
+                                "text": "40"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "status"
+                                },
+                                "text": "inactive"
+                            }
+                        ]
+                    },
+                    {
+                        "cell": [
+                            {
+                                "attributes": {
+                                    "name": "id"
+                                },
+                                "text": "4"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "name"
+                                },
+                                "text": "Michael Brown"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "age"
+                                },
+                                "text": "40"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "status"
+                                },
+                                "text": "inactive"
+                            }
+                        ]
+                    },
+                    {
+                        "cell": [
+                            {
+                                "attributes": {
+                                    "name": "id"
+                                },
+                                "text": "4"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "name"
+                                },
+                                "text": "Michael Brown"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "age"
+                                },
+                                "text": "40"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "status"
+                                },
+                                "text": "inactive"
+                            }
+                        ]
+                    },
+                    {
+                        "cell": [
+                            {
+                                "attributes": {
+                                    "name": "id"
+                                },
+                                "text": "4"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "name"
+                                },
+                                "text": "Michael Brown"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "age"
+                                },
+                                "text": "40"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "status"
+                                },
+                                "text": "inactive"
+                            }
+                        ]
+                    },
+                    {
+                        "cell": [
+                            {
+                                "attributes": {
+                                    "name": "id"
+                                },
+                                "text": "4"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "name"
+                                },
+                                "text": "Michael Brown"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "age"
+                                },
+                                "text": "40"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "status"
+                                },
+                                "text": "inactive"
+                            }
+                        ]
+                    },
+                    {
+                        "cell": [
+                            {
+                                "attributes": {
+                                    "name": "id"
+                                },
+                                "text": "4"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "name"
+                                },
+                                "text": "Michael Brown"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "age"
+                                },
+                                "text": "40"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "status"
+                                },
+                                "text": "inactive"
+                            }
+                        ]
+                    },
+                    {
+                        "cell": [
+                            {
+                                "attributes": {
+                                    "name": "id"
+                                },
+                                "text": "4"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "name"
+                                },
+                                "text": "Michael Brown"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "age"
+                                },
+                                "text": "40"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "status"
+                                },
+                                "text": "inactive"
+                            }
+                        ]
+                    },
+                    {
+                        "cell": [
+                            {
+                                "attributes": {
+                                    "name": "id"
+                                },
+                                "text": "4"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "name"
+                                },
+                                "text": "Michael Brown"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "age"
+                                },
+                                "text": "40"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "status"
+                                },
+                                "text": "inactive"
+                            }
+                        ]
+                    },
+                    {
+                        "cell": [
+                            {
+                                "attributes": {
+                                    "name": "id"
+                                },
+                                "text": "4"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "name"
+                                },
+                                "text": "Michael Brown"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "age"
+                                },
+                                "text": "40"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "status"
+                                },
+                                "text": "inactive"
+                            }
+                        ]
+                    },
+                    {
+                        "cell": [
+                            {
+                                "attributes": {
+                                    "name": "id"
+                                },
+                                "text": "4"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "name"
+                                },
+                                "text": "Michael Brown"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "age"
+                                },
+                                "text": "40"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "status"
+                                },
+                                "text": "inactive"
+                            }
+                        ]
+                    },
+                    {
+                        "cell": [
+                            {
+                                "attributes": {
+                                    "name": "id"
+                                },
+                                "text": "4"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "name"
+                                },
+                                "text": "Michael Brown"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "age"
+                                },
+                                "text": "40"
+                            },
+                            {
+                                "attributes": {
+                                    "name": "status"
+                                },
+                                "text": "inactive"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+         "filterLayer": {
+            "filter": [
+                {
+                    "id": "nameFilter",
+                    "value": "name",
+                    "title": "Name",
+                    "operators": [
+                    {
+                        "title": "equals",
+                        "value": "equals"
+                    },
+                    {
+                        "title": "contains",
+                        "value": "contains"
+                    }
+                    ]
+                },
+                {
+                    "id": "ageFilter",
+                    "value": "age",
+                    "title": "Age",
+                    "values": ["age"],
+                    "titles": ["Age"],
+                    "operators": [
+                    {
+                        "title": "greater than",
+                        "value": "greater"
+                    },
+                    {
+                        "title": "less than",
+                        "value": "less"
+                    }
+                    ]
+                },
+                {
+                    "id": "statusFilter",
+                    "value": "status",
+                    "title": "Status",
+                    "operators": [
+                    {
+                        "title": "equals",
+                        "value": "equals"
+                    }
+                    ]
+                }
+            ]
+        },
+        "panelEntries": {
+            "entry": [
+                {
+                    "attributes": {
+                        "type": "filter"
+                    },
+                    "text": "Filter"
+                },
+                {
+                    "attributes": {
+                        "type": "reload"
+                    },
+                    "text": "Reload"
+                },
+                {
+                    "attributes": {
+                        "type": "insert"
+                    },
+                    "text": "Insert"
+                },
+                {
+                    "attributes": {
+                        "type": "delete"
+                    },
+                    "text": "Delete"
+                }
+            ]
+        },
+        "editTemplates": {
+            "template": [
+                {
+                    "attributes": {
+                        "id": "textTemplate",
+                        "type": "textBox"
+                    }
+                },
+                {
+                    "attributes": {
+                        "id": "checkBoxTemplate"
+                    },
+                    "content": {
+                        "entry": [
+                            {
+                                "attributes": {
+                                    "text": "Yes",
+                                    "value": "checked",
+                                    "type": "checkBox"
+                                }
+                            },
+                            {
+                                "attributes": {
+                                    "text": "No",
+                                    "value": "unchecked"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "attributes": {
+                        "id": "dropDownTemplate",
+                        "type": "dropDownList",
+                        "valueColumn": "status"
+                    },
+                    "content": {
+                        "entry": [
+                            {
+                                "attributes": {
+                                    "text": "Active",
+                                    "value": "active"
+                                }
+                            },
+                            {
+                                "attributes": {
+                                    "text": "Inactive",
+                                    "value": "inactive"
+                                }
+                            },
+                            {
+                                "attributes": {
+                                    "text": "Pending",
+                                    "value": "pending"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "insertTemplates": {
+            "template": {
+                "attributes": {
+                    "id": "insertTemplate"
+                },
+                "content": {
+                    "entry": [
+                        {
+                            "attributes": {
+                                "text": "Yes",
+                                "value": "checked",
+                                "type": "checkBox"
+                            }
+                        },
+                        {
+                            "attributes": {
+                                "text": "No",
+                                "value": "unchecked"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "itemTemplates": {
+            "template": {
+            }
+        },
+        "translations": {
+            "add": [
+                {
+                    "attributes": {
+                        "key": "ok",
+                        "value": "Ok"
+                    }
+                },
+                {
+                    "attributes": {
+                        "key": "cancel",
+                        "value": "Cancel"
+                    }
+                }
+            ]
+        },
+        "messages": {
+            "saveChanges": {
+                "text": "Do you want to save the changes?"
+            },
+            
+            "deleteLine": {
+                "text": "Do you really want to delete this row?"
+            }
+        }
+
+    }
+}
